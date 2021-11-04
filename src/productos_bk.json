@@ -1,0 +1,17 @@
+[
+    {
+        "id":1,
+        "timestamp":"14/12/2021",
+        "nombre":"Escuadra",
+        "descripcion":"es una Escuadra",
+        "codigo":"1a1a1a1",
+        "foto":"www.prueba.com.ar/asda",
+        "price":125.45,
+        "stock":10
+    },
+    {"title":"Calculadora","price":255.56,"thumbNail":"www.prueba.com.ar/asda","id":2},
+    {"title":"Escuadra","price":341.87,"thumbNail":"www.prueba.com.ar/asda","id":3},
+    {"title":"lapiz","price":14,"thumbNail":"www.test.com.ar","id":4},
+    {"title":"compas","price":"123","thumbNail":"www.compas.com.ar","id":6},
+    {"title":"compas","price":"123","thumbNail":"www.compas.com.ar","id":7}
+]

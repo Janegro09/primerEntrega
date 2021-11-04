@@ -1,0 +1,282 @@
+{
+	"info": {
+		"_postman_id": "b3c71609-ef52-49cc-9ae1-92c966ff48c4",
+		"name": "CoderApiReest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "productos",
+			"item": [
+				{
+					"name": "oneProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/productos/:id",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"productos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"lapiz\",\n    \"price\":14,\n    \"thumbNail\":\"www.test.com.ar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/productos",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modifyProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"lapiz\",\n    \"price\":170,\n    \"thumbNail\":\"www.test.com.ar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/productos/:id",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"productos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/productos/:id",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"productos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "allProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/productos",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "carrito",
+			"item": [
+				{
+					"name": "newCarrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/carrito",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"carrito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCarrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/productos/:id",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"productos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "allCarritoProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/carrito/:id/productos",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"carrito",
+								":id",
+								"productos"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newProductCarrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\":1,\n        \"nombre\":\"Escuadra\",\n        \"descripcion\":\"es una Escuadra\",\n        \"codigo\":\"1a1a1a1\",\n        \"foto\":\"www.prueba.com.ar/asda\",\n        \"price\":125.45,\n        \"stock\":10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/carrito/:id/productos",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"carrito",
+								":id",
+								"productos"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/carrito/:id/productos/:id_prod",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"carrito",
+								":id",
+								"productos",
+								":id_prod"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "id_prod",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
