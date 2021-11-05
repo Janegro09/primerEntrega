@@ -2,6 +2,7 @@ const { Router } = require('express');
 const Contenedor = require('../archivos');
 const carrito = new Contenedor('carrito.json');
 const productos = new Contenedor('productos.json');
+const validarId = require('../midleware/validarId');
 
 const routerCarrito = Router();
 
@@ -21,20 +22,10 @@ routerCarrito.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const nuevoCarrito = []
     //Validamos el id
-    if(id <= 0) {
-        res.json({error:'carrito no encontrado'})
-    }
-
-    if(isNaN(id)) {
-        res.json({error:'carrito no encontrado'})
-    }
-
-    let all = carrito.getAll();
-
-    if(id > all.length) {
-        res.json({error:'carrito no encontrado'})
-    }
     
+    let all = carrito.getAll();
+    validarId(id, all.length);
+   
     for (let i = 0; i < all.length; i++) {
         const element = all[i];
         if(element.id===id) {
@@ -49,17 +40,11 @@ routerCarrito.delete('/:id', (req, res) => {
 
 routerCarrito.get('/:id/productos', (req, res) => {
 
+    const all = carrito.getAll();
     const id = parseInt(req.params.id);
     //Validamos el id
-    if(id > all.length) {
-        res.json({error:'product no encontrado'})
-    }
-    if(id <= 0) {
-        res.json({error:'product no encontrado'})
-    }
-    if(isNaN(id)) {
-        res.json({error:'product no encontrado'})
-    }
+
+    validarId(id, all.length);
 
     const carritoActual = carrito.getById(id)
 
@@ -71,75 +56,62 @@ routerCarrito.post('/:id/productos', (req, res) => {
     const nuevoProductos = [];
     const id = parseInt(req.params.id);
     //Validamos el id
-    if(id <= 0) {
-        res.json({error:'product no encontrado'})
-    }
 
-    if(isNaN(id)) {
-        res.json({error:'product no encontrado'})
-    }
-    
     const all = carrito.getAll();
+
+    validarId(id, all.length);
     
-    if(id > all.length) {
-        res.json({error:'product no encontrado'})
-    }
-    const carritoActual = carrito.getById(id)
-
-    carritoActual.producto.push(productoNuevo)
-
+    const idProducto = req.body.id;
+    const productoAgregar   = productos.getById(idProducto); 
+    
     for (let i = 0; i < all.length; i++) {
         const element = all[i];
         if(element.id===id) {
-            nuevoProductos.push(carritoActual);
+            element.producto.push(productoAgregar);
+            nuevoProductos.push(element);
         } else {
-            nuevoProductos.push(carritoActual);
+            nuevoProductos.push(element);
         }
     }
 
     carrito.crear("carrito.json",nuevoProductos);
 
-    res.send(carritoActual)
+    res.json({mensaje:"agregado ok"})
 })
 
 routerCarrito.delete('/:id/productos/:id_prod', (req, res) => {
 
+    const nuevoProductos = [];
+    const nuevoCarrito = [];
     const id = parseInt(req.params.id);
-    const id_prod = parseInt(req.params.id_prod);
-    const carritoNUevo = []
+    const idProducto = parseInt(req.params.id_prod);
     //Validamos el id
-    if(id <= 0 || id_prod<=0) {
-        res.json({error:'product no encontrado'})
-    }
-    if(isNaN(id) || isNaN(id_prod)) {
-        res.json({error:'product no encontrado'})
-    }
 
-    let all = (carrito.getAll())
+    const all = carrito.getAll();
+    const allProduct = productos.getAll();
 
-    if(id > all.length) {
-        res.json({error:'product no encontrado'})
-    }
-    
+    validarId(id, all.length);
+    validarId(idProducto, allProduct.length);
+
     for (let i = 0; i < all.length; i++) {
         const element = all[i];
         if(element.id===id) {
-            nuevoProductos = [];
             for (let j = 0; j < element.producto.length; j++) {
                 const elem = element.producto[j];
-                if(elem.id===id_prod){
-                    continue
+                console.log(idProducto, elem.id)
+                if(elem.id !== idProducto){
+                    nuevoProductos.push(elem);
                 }
-                nuevoProductos.push(elem)
             }
-            carritoNUevo.push(nuevoProductos);
-
+            element.producto = nuevoProductos;
+            nuevoCarrito.push(element);
         } else {
-            carritoNUevo.push(element);
+            nuevoCarrito.push(element);
         }
     }
-    carrito.crear("carrito.json",carritoNUevo);
-    res.send('delete ok')
+    carrito.crear("carrito.json",nuevoCarrito);
+
+    res.json({mensaje:"eliminado ok"})
 })
 
 exports.routerCarrito = routerCarrito;

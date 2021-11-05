@@ -23,7 +23,7 @@ class Contenedor {
             all.push(datos);
             fs.writeFileSync(this.nombre,JSON.stringify(all),'utf-8');
 
-            return nuevo.id;
+            return datos.id;
         } catch (error) {
             console.log(error);
         }
@@ -40,7 +40,6 @@ class Contenedor {
     };
 
     getAll() {
-        console.log(this.nombre)
         try {
             let data = fs.readFileSync(this.nombre,'utf-8');
             return JSON.parse(data);

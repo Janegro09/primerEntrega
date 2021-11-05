@@ -33,13 +33,30 @@
 					"response": []
 				},
 				{
+					"name": "allProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/productos",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "newProduct",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\":\"lapiz\",\n    \"price\":14,\n    \"thumbNail\":\"www.test.com.ar\"\n}",
+							"raw": "{\n        \"administrador\":true,\n        \"nombre\":\"lapiz\",\n        \"descripcion\":\"es una Escuadra\",\n        \"codigo\":\"1a1a1a1\",\n        \"foto\":\"www.prueba.com.ar/asda\",\n        \"price\":125.45,\n        \"stock\":10\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -65,7 +82,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\":\"lapiz\",\n    \"price\":170,\n    \"thumbNail\":\"www.test.com.ar\"\n}",
+							"raw": "{\n        \"administrador\":true,\n        \"nombre\":\"Escuadra22\",\n        \"descripcion\":\"es una Escuadra\",\n        \"codigo\":\"1a1a1a1\",\n        \"foto\":\"www.prueba.com.ar/asda\",\n        \"price\":125.45,\n        \"stock\":10\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -84,7 +101,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "4"
+									"value": "1"
 								}
 							]
 						}
@@ -96,6 +113,15 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"administrador\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{url}}api/productos/:id",
 							"host": [
@@ -108,25 +134,8 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "4"
+									"value": "1"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "allProduct",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}api/productos",
-							"host": [
-								"{{url}}api"
-							],
-							"path": [
-								"productos"
 							]
 						}
 					},
@@ -169,12 +178,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}api/productos/:id",
+							"raw": "{{url}}api/carrito/:id",
 							"host": [
 								"{{url}}api"
 							],
 							"path": [
-								"productos",
+								"carrito",
 								":id"
 							],
 							"variable": [
@@ -219,7 +228,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"id\":1,\n        \"nombre\":\"Escuadra\",\n        \"descripcion\":\"es una Escuadra\",\n        \"codigo\":\"1a1a1a1\",\n        \"foto\":\"www.prueba.com.ar/asda\",\n        \"price\":125.45,\n        \"stock\":10\n}",
+							"raw": "{\n        \"id\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -239,7 +248,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": null
+									"value": "1"
 								}
 							]
 						}
